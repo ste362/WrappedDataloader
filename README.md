@@ -1,6 +1,7 @@
 # WrappedDataloader
 An optimized way to move the dataloader to gpu for improve train time.
-The idea is to move the full dataloader to gpu ram for maximize the parallelism of gpu and don't lose time for move each batch fro the system ram to gpu ram.
+
+The idea is to move the full dataloader to gpu ram for maximize the parallelism of gpu and don't lose time for move each batch from the system ram to gpu ram.
 
 The module optimize.py contains the class WrappedDataloader.
 
