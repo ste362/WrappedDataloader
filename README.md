@@ -9,5 +9,14 @@ WrappedDataloader has three parameters:
   3. shuffle (false by default)
 
 This is an example of parameter func of WrappedDataloader for CIFAR10 dataset:
+```
 def preprocess(x, y):
     return x.view(-1, 3, 32, 32).to(device), y.to(device)  #device is the name of gpu
+```
+This is an example of parameter func of WrappedDataloader for FashionMNIST dataset:
+```
+def preprocess(x, y):
+    return x.view(-1, 1, 28, 28).to(device), y.to(device)
+```
+
+Tests show a speedup of up to 3.
