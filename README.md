@@ -7,6 +7,26 @@ WrappedDataloader has three parameters:
   1. dataloader
   2. func is a function that preprocess and move the tensor to gpu
   3. shuffle (false by default)
+```
+class WrappedDataLoader:
+    def __init__(self, dataloader, func, shuffle=False): #func is a function used of preprocess and move the tensor to gpu
+        self.dataloader = dataloader
+        self.func = func
+        self.shuffle=shuffle
+        self.address=[]
+        batches = iter(self.dataloader)
+        for b in batches:
+            self.address.append(self.func(*b))
+
+    def __len__(self):
+        return len(self.dataloader)
+
+    def __iter__(self):
+        if self.shuffle:
+            random.shuffle(self.address)
+            return iter(self.address)
+        return iter(self.address)
+```
 
 This is an example of parameter func of WrappedDataloader for CIFAR10 dataset:
 ```
@@ -18,5 +38,9 @@ This is an example of parameter func of WrappedDataloader for FashionMNIST datas
 def preprocess(x, y):
     return x.view(-1, 1, 28, 28).to(device), y.to(device)
 ```
-
+Example to how use class WrappedDataLoader
+```
+train_dataloader = WrappedDataLoader(train_dataloader, preprocess,shuffle=True)
+test_dataloader = WrappedDataLoader(test_dataloader, preprocess,shuffle=True)
+```
 Tests show a speedup of up to 3.
