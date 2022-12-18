@@ -43,4 +43,4 @@ Example to how use class WrappedDataLoader
 train_dataloader = WrappedDataLoader(train_dataloader, preprocess,shuffle=True)
 test_dataloader = WrappedDataLoader(test_dataloader, preprocess,shuffle=True)
 ```
-Tests show a speedup of up to 3.
+With this module is possible to achieve up to 3 of speedup during the train.
