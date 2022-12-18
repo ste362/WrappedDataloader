@@ -1,5 +1,6 @@
 # WrappedDataloader
-An optimized way to move the dataset to gpu for improve train time.
+An optimized way to move the dataloader to gpu for improve train time.
+The idea is to move the full dataloader to gpu ram for maximize the parallelism of gpu and don't lose time for move each batch fro the system ram to gpu ram.
 
 The module optimize.py contains the class WrappedDataloader.
 
@@ -46,3 +47,11 @@ train_dataloader = WrappedDataLoader(train_dataloader, preprocess,shuffle=True)
 test_dataloader = WrappedDataLoader(test_dataloader, preprocess,shuffle=True)
 ```
 With this module is possible to achieve up to 3 of speedup during the train.
+
+The following table shows the results obtained:
+
+| Program             | Standard epoch time   | Optimized epoch time  |
+| -------------       |:-------------:        | -----:                |
+| Train FashionMNIST  |        ~13s           |           ~7s         |
+| Train CIFAR-10      |        ~14s           |           ~6s         |
+
