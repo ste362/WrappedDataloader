@@ -51,7 +51,7 @@ With this module is possible to achieve up to 3 of speedup during the train.
 The following table shows the results obtained:
 
 | Program             | Standard epoch time   | Optimized epoch time  |
-| -------------       |:-------------:        | -----:                |
+| -------------       |:-------------:        |: -----:                |
 | Train FashionMNIST  |        ~13s           |           ~7s         |
 | Train CIFAR-10      |        ~14s           |           ~6s         |
 
